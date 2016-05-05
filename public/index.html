@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="StoreListApp">
+<head>
+  <title>Store Example: Movies / Books / Music</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row" ng-controller="MovieCtrl">
+      <h2> <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Movie List</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-1">Poster</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-1">Year</th>
+            <th class="col-md-3">Summary</th>
+            <th class="col-md-2">Director</th>
+            <th class="col-md-2">Cast</th>
+            <th class="col-md-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input class="form-control" ng-model="movie.poster" /></td>
+            <td><input class="form-control" ng-model="movie.title" /></td>
+            <td><input class="form-control" ng-model="movie.year" /></td>
+            <td><input class="form-control" ng-model="movie.summary" /></td>
+            <td>DIRECTOR</td>
+            <td>CAST</td>
+            <td><button class="btn btn-primary" ng-click="addMovie()">Add</button></td>
+          </tr>
+          <tr ng-repeat="movie in movieList">
+            <td>
+              <img src="{{movie.poster}}" class="img-thumbnail" />
+            </td>
+            <td>{{movie.title}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.summary}}</td>
+            <td><p data-ng-repeat="a in movie.director">{{a}}</p></td>
+            <td><p data-ng-repeat="a in movie.cast">{{a}}</p></td>
+            <td><button class="btn btn-danger" ng-click="deleteMovie(movie.title)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div class="row" ng-controller="BookCtrl">
+      <h1> <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Book List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-1">Cover</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-1">Year</th>
+            <th class="col-md-3">Summary</th>
+            <th class="col-md-2">Author</th>
+            <th class="col-md-1">Genre</th>
+            <th class="col-md-1">ISBN</th>
+            <th class="col-md-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input class="form-control" ng-model="book.cover" /></td>
+            <td><input class="form-control" ng-model="book.title" /></td>
+            <td><input class="form-control" ng-model="book.year" /></td>
+            <td><input class="form-control" ng-model="book.summary" /></td>
+            <td>AUTHOR</td>
+            <td>GENRE</td>
+            <td><input class="form-control" ng-model="book.isbn" /></td>
+            <td><button class="btn btn-primary" ng-click="addBook()">Add</button></td>
+          </tr>
+          <tr ng-repeat="book in bookList">
+            <td>
+              <img src="{{book.cover}}" class="img-thumbnail" />
+            </td>
+            <td>{{book.title}}</td>
+            <td>{{book.year}}</td>
+            <td>{{book.summary}}</td>
+            <td><p data-ng-repeat="a in book.author">{{a}}</p></td>
+            <td><p data-ng-repeat="a in book.genre">{{a}}</p></td>
+            <td><a href="http://www.isbnsearch.org/isbn/">{{book.isbn}}</a></td>
+            <td><button class="btn btn-danger" ng-click="deleteBook(book.title)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div class="row" ng-controller="MusicCtrl">
+      <h1> <span class="glyphicon glyphicon-music" aria-hidden="true"></span> Music List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-md-1">Cover</th>
+            <th class="col-md-2">Album</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-1">Year</th>
+            <th class="col-md-1">Artist</th>
+            <th class="col-md-1">Compositor</th>
+            <th class="col-md-1">Genre</th>
+            <th class="col-md-1">Track of No. Tracks</th>
+            <th class="col-md-1">Disc of No. Discs</th>
+            <th class="col-md-1">Duration (sec)</th>
+            <th class="col-md-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input class="form-control" ng-model="music.cover" /></td>
+            <td><input class="form-control" ng-model="music.album" /></td>
+            <td><input class="form-control" ng-model="music.title" /></td>
+            <td><input class="form-control" ng-model="music.year" /></td>
+            <td>ARTIST</td>
+            <td>COMPOSITOR</td>
+            <td>GENRE</td>
+            <td><input class="form-control" ng-model="music.track" /> of <input class="form-control" ng-model="music.notracks" /></td>
+            <td><input class="form-control" ng-model="music.disc" /> of <input class="form-control" ng-model="music.nodiscs" /></td>
+            <td><input class="form-control" ng-model="music.duration" /></td>
+            <td><button class="btn btn-primary" ng-click="addMusic()">Add</button></td>
+          </tr>
+          <tr ng-repeat="music in musicList">
+            <td>
+              <img src="{{music.cover}}" class="img-thumbnail" />
+            </td>
+            <td>{{music.album}}</td>
+            <td>{{music.title}}</td>
+            <td>{{music.year}}</td>
+            <td><p data-ng-repeat="a in music.artist">{{a}}</p></td>
+            <td><p data-ng-repeat="a in music.compositor">{{a}}</p></td>
+            <td><p data-ng-repeat="a in music.genre">{{a}}</p></td>
+            <td>{{music.track}} of {{music.notracks}}</td>
+            <td>{{music.disc}} of {{music.nodiscs}}</td>
+            <td>{{music.duration}}</td>
+            <td><button class="btn btn-danger" ng-click="deleteMusic(music.title)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script type="text/javascript" src="controllers.js"></script>
+
+
+</body>
+</html>
