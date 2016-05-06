@@ -9,7 +9,22 @@ var port = (process.env.PORT || 10000);
 
 var app = express();
 
-//governify.control(app, {namespace: 'pcp'});
+/*governify.control(app, {namespace: 'pcp'}, 	customMetrics: [
+		{
+			path: "/movies",
+			method: "POST",
+			term: 'ResourcesTerm',
+			metric: 'Resources',
+			calculate: function(req, res, callback){
+				//asynchronousCalculation
+				callback( 4 );
+				//synchronous
+				return contacts.length();
+			}
+		}
+	]);
+*/
+
 
 var dbMoviesFileName = path.join(__dirname,'movies.json');
 var dbMovies = new DataStore({
