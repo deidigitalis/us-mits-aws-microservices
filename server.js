@@ -11,18 +11,21 @@ var app = express();
 
 //governify.control(app, {namespace: 'pcp'});
 
+var dbMoviesFileName = path.join(__dirname,'movies.json');
 var dbMovies = new DataStore({
-	filename : path.join(__dirname,'movies.json'),
+	filename : dbMoviesFileName,
 	autoload: true
 });
 
+var dbBooksFileName = path.join(__dirname,'books.json');
 var dbBooks = new DataStore({
-	filename : path.join(__dirname,'books.json'),
+	filename : dbBooksFileName,
 	autoload: true
 });
 
+var dbMusicsFileName = path.join(__dirname,'musics.json');
 var dbMusics = new DataStore({
-	filename : path.join(__dirname,'musics.json'),
+	filename : dbMusicsFileName,
 	autoload: true
 });
 
@@ -38,8 +41,8 @@ dbMovies.find({},function (err,movies){
 			year: 2013,
 			poster: "http://ia.media-imdb.com/images/M/MV5BMTQ1Mjk1NTY2NV5BMl5BanBnXkFtZTgwMTA2MDEwNzE@._V1_SX300.jpg",
 			summary: "The Batman has returned after a 10-year absence. The Gotham authorities want to arrest him. An old foe wants a reunion. The Feds want the Man of Tomorrow to put a stop to him.",
-			director: [ "Jay Oliva" ],
-			cast : [ "Peter Weller", "Ariel Winter", "Michael Emerson" ]
+			director: "Jay Oliva",
+			cast : "Peter Weller, Ariel Winter, Michael Emerson"
 		});
 
 		dbMovies.insert({
@@ -47,8 +50,8 @@ dbMovies.find({},function (err,movies){
 			year: 2015,
 			poster: "http://ia.media-imdb.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX640_SY720_.jpg",
 			summary: "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's Mightiest Heroes to stop the villainous Ultron from enacting his terrible plans.",
-			director: [ "Joss Whedon" ],
-			cast : ["Samuel L. Jackson", "Robert Downey Jr.", "James Spader", "Paul Bettany", "Chris Evans", "Scarlett Johansson", "Elizabeth Olsen", "Jeremy Renner", "Mark Ruffalo", "Aaron Taylor-Johnson", "Chris Hemsworth"]
+			director: "Joss Whedon",
+			cast : "Samuel L. Jackson, Robert Downey Jr., James Spader, Paul Bettany, Chris Evans, Scarlett Johansson, Elizabeth Olsen, Jeremy Renner, Mark Ruffalo, Aaron Taylor-Johnson, Chris Hemsworth"
 		});
 
 		dbMovies.insert({
@@ -56,8 +59,8 @@ dbMovies.find({},function (err,movies){
 			year: 2016,
 			poster: "http://ia.media-imdb.com/images/M/MV5BNTE5NzU3MTYzOF5BMl5BanBnXkFtZTgwNTM5NjQxODE@._V1_SX640_SY720_.jpg",
 			summary: "Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the world wrestles with what kind of a hero it really needs.",
-			director: [ "Zack Snyder" ],
-			cast : [ "Ben Affleck", "Henry Cavill", "Gal Gadot" ]
+			director: "Zack Snyder",
+			cast : "Ben Affleck, Henry Cavill, Gal Gadot"
 		});
 
 		dbMovies.insert({
@@ -65,8 +68,8 @@ dbMovies.find({},function (err,movies){
 			year: 1999,
 			poster: "http://ia.media-imdb.com/images/M/MV5BMTkxNDYxOTA4M15BMl5BanBnXkFtZTgwNTk0NzQxMTE@._V1_SX640_SY720_.jpg",
 			summary: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-			director: [ "Lana Wachowski", "Lilly Wachowski" ],
-			cast : [ "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Joe Pantoliano" ]
+			director: "Lana Wachowski, Lilly Wachowski",
+			cast : "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Joe Pantoliano"
 		});
 
 	}else{
@@ -85,8 +88,8 @@ dbBooks.find({},function (err,books){
 			year: 1983,
 			cover: "https://upload.wikimedia.org/wikipedia/en/4/4d/The_Colour_of_Magic_%28cover_art%29.jpg",
 			summary: "The Colour of Magic (also known as The Color of Magic) is a 1983 comic fantasy novel by Terry Pratchett, and is the first book of the Discworld series. The first printing of the British edition consisted of 506 copies.",
-			author: [ "Terry Pratchett" ],
-			genre : [ "Fantasy" ],
+			author: "Terry Pratchett",
+			genre : "Fantasy",
 			isbn : "0-86140-324-X"
 		});
 
@@ -95,8 +98,8 @@ dbBooks.find({},function (err,books){
 			year: 1902,
 			cover: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Cover_%28Hound_of_Baskervilles%2C_1902%29.jpg",
 			summary: "The Hound of the Baskervilles is the third of the crime novels written by Sir Arthur Conan Doyle featuring the detective Sherlock Holmes.",
-			author: [ "Michael Crichton" ],
-			genre : ["Science fiction", "Techno-thriller", "Horror fiction" ],
+			author: "Michael Crichton",
+			genre : "Science fiction, Techno-thriller, Horror fiction",
 			isbn : "0-394-58816-9"
 		});
 
@@ -105,8 +108,8 @@ dbBooks.find({},function (err,books){
 			year: 2012,
 			cover: "http://leelibros.com/biblioteca/files/images/2099_0.jpg",
 			summary: "La Colección Narrativas, de Ediciones Irreverentes (editorial fundada en 1999), llega a su número 100. Y lo hace con una compilación de relatos futuristas titulada 2099. Antología de Ciencia Ficción, coordinada por Félix Díaz y Miguel Ángel de Rus.",
-			author: [ "Philip K. Dick", "Arthur C. Clarke", "Julio Verne", "Carlos Sáiz Cidoncha", "Ray Bradbury", "Francisco Javier Illán Vivas", "Edward Page Mitchell", "Eduardo Vaquerizo", "Ana María Shua", "Francisco Javier Masegosa Ávila", "Javier Fernández Jiménez", "Miguel Ángel de Rus", "Pedro Amorós", "Andrés Fornells", "Manuel Villa-Mabela", "Kalton Harold Bruhl", "Joaquín Lloréns", "Nelson Verástegui", "Francisco Legaz", "Elena Marqués", "Erick Mota", "Mar Cueto Aller", "Pablo Vázquez", "Jesús Yébenes Montemayor", "Francisco José Segovia Ramos", "Santiago Bergantinhos", "Félix Díaz González", "Susana Corcuera", "Salvador Robles Miras", "Juanje López", "Javier Martos", "Pedro Pujante", "Marisa Alemany", "Eduardo Higueras Ledesma", "Jorge Majfud", "Julio Rueda Suarez", "Aleksandr Beliáev", "Alberto Chimal", "Joan Llensa", "José Ramón Fernández", "José G. Cordonié", "Víctor Bórquerz", "Pedro López Manzano", "José Luis Ordoñez", "Juan Vivancos Antón", "Kir Bullychiov" ],
-			genre : ["Science fiction", "Narrative" ],
+			author: "Philip K. Dick, Arthur C. Clarke, Julio Verne, Carlos Sáiz Cidoncha, Ray Bradbury, Francisco Javier Illán Vivas, Edward Page Mitchell, Eduardo Vaquerizo, Ana María Shua, Francisco Javier Masegosa Ávila, Javier Fernández Jiménez, Miguel Ángel de Rus, Pedro Amorós, Andrés Fornells, Manuel Villa-Mabela, Kalton Harold Bruhl, Joaquín Lloréns, Nelson Verástegui, Francisco Legaz, Elena Marqués, Erick Mota, Mar Cueto Aller, Pablo Vázquez, Jesús Yébenes Montemayor, Francisco José Segovia Ramos, Santiago Bergantinhos, Félix Díaz González, Susana Corcuera, Salvador Robles Miras, Juanje López, Javier Martos, Pedro Pujante, Marisa Alemany, Eduardo Higueras Ledesma, Jorge Majfud, Julio Rueda Suarez, Aleksandr Beliáev, Alberto Chimal, Joan Llensa, José Ramón Fernández, José G. Cordonié, Víctor Bórquerz, Pedro López Manzano, José Luis Ordoñez, Juan Vivancos Antón, Kir Bullychiov",
+			genre : "Science fiction, Narrative",
 			isbn : "0-394-58816-9"
 		});
 
@@ -126,9 +129,9 @@ dbMusics.find({},function (err,musics){
 			album: "Harry Potter & The Deathly Hallows. Part I",
 			year: 2010,
 			cover: "http://a2.mzstatic.com/us/r30/Music3/v4/aa/b6/1c/aab61c52-97a0-bae4-65a8-50da8db9a829/cover170x170.jpeg",
-			artist: [ "Alexandre Desplat" ],
-			compositor: [ "Alexandre Desplat" ],
-			genre : [ "Sound Track" ],
+			artist: "Alexandre Desplat",
+			compositor: "Alexandre Desplat",
+			genre : "Sound Track",
 			track : 15,
 			notracks : 26,
 			disc : 1,
@@ -141,9 +144,9 @@ dbMusics.find({},function (err,musics){
 			album: "The Last Samurai",
 			year: 2004,
 			cover: "http://a1.mzstatic.com/us/r30/Video/v4/f9/d9/1a/f9d91aa7-94a1-be34-417b-6e2cc9bd43dc/poster227x227.jpeg",
-			artist: [ "Hans Zimmer" ],
-			compositor: [ "Hans Zimmer" ],
-			genre : [ "Sound Track" ],
+			artist: "Hans Zimmer",
+			compositor: "Hans Zimmer",
+			genre : "Sound Track",
 			track : 1,
 			notracks : 11,
 			disc : 1,

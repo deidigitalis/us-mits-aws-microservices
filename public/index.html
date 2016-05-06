@@ -31,19 +31,19 @@
             <td><input class="form-control" ng-model="movie.title" /></td>
             <td><input class="form-control" ng-model="movie.year" /></td>
             <td><input class="form-control" ng-model="movie.summary" /></td>
-            <td>DIRECTOR</td>
-            <td>CAST</td>
+            <td><input class="form-control" ng-model="movie.director" /></td>
+            <td><input class="form-control" ng-model="movie.cast" /></td>
             <td><button class="btn btn-primary" ng-click="addMovie()">Add</button></td>
           </tr>
           <tr ng-repeat="movie in movieList">
             <td>
-              <img src="{{movie.poster}}" class="img-thumbnail" />
+              <img src="{{movie.poster}}" class="img-thumbnail" width="150"/>
             </td>
             <td>{{movie.title}}</td>
             <td>{{movie.year}}</td>
             <td>{{movie.summary}}</td>
-            <td><p data-ng-repeat="a in movie.director">{{a}}</p></td>
-            <td><p data-ng-repeat="a in movie.cast">{{a}}</p></td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.cast}}</td>
             <td><button class="btn btn-danger" ng-click="deleteMovie(movie.title)">Delete</button></td>
           </tr>
         </tbody>
@@ -71,21 +71,21 @@
             <td><input class="form-control" ng-model="book.title" /></td>
             <td><input class="form-control" ng-model="book.year" /></td>
             <td><input class="form-control" ng-model="book.summary" /></td>
-            <td>AUTHOR</td>
-            <td>GENRE</td>
+            <td><input class="form-control" ng-model="book.author" /></td>
+            <td><input class="form-control" ng-model="book.genre" /></td>
             <td><input class="form-control" ng-model="book.isbn" /></td>
             <td><button class="btn btn-primary" ng-click="addBook()">Add</button></td>
           </tr>
           <tr ng-repeat="book in bookList">
             <td>
-              <img src="{{book.cover}}" class="img-thumbnail" />
+              <img src="{{book.cover}}" class="img-thumbnail" width="150"/>
             </td>
             <td>{{book.title}}</td>
             <td>{{book.year}}</td>
             <td>{{book.summary}}</td>
-            <td><p data-ng-repeat="a in book.author">{{a}}</p></td>
-            <td><p data-ng-repeat="a in book.genre">{{a}}</p></td>
-            <td><a href="http://www.isbnsearch.org/isbn/">{{book.isbn}}</a></td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td><a href="http://www.isbnsearch.org/isbn/{{book.isbn}}">{{book.isbn}}</a></td>
             <td><button class="btn btn-danger" ng-click="deleteBook(book.title)">Delete</button></td>
           </tr>
         </tbody>
@@ -116,9 +116,9 @@
             <td><input class="form-control" ng-model="music.album" /></td>
             <td><input class="form-control" ng-model="music.title" /></td>
             <td><input class="form-control" ng-model="music.year" /></td>
-            <td>ARTIST</td>
-            <td>COMPOSITOR</td>
-            <td>GENRE</td>
+            <td><input class="form-control" ng-model="music.artist" /></td>
+            <td><input class="form-control" ng-model="music.compositor" /></td>
+            <td><input class="form-control" ng-model="music.genre" /></td>
             <td><input class="form-control" ng-model="music.track" /> of <input class="form-control" ng-model="music.notracks" /></td>
             <td><input class="form-control" ng-model="music.disc" /> of <input class="form-control" ng-model="music.nodiscs" /></td>
             <td><input class="form-control" ng-model="music.duration" /></td>
@@ -126,14 +126,14 @@
           </tr>
           <tr ng-repeat="music in musicList">
             <td>
-              <img src="{{music.cover}}" class="img-thumbnail" />
+              <img src="{{music.cover}}" class="img-thumbnail" width="150"/>
             </td>
             <td>{{music.album}}</td>
             <td>{{music.title}}</td>
             <td>{{music.year}}</td>
-            <td><p data-ng-repeat="a in music.artist">{{a}}</p></td>
-            <td><p data-ng-repeat="a in music.compositor">{{a}}</p></td>
-            <td><p data-ng-repeat="a in music.genre">{{a}}</p></td>
+            <td>{{music.artist}}</td>
+            <td>{{music.compositor}}</td>
+            <td>{{music.genre}}</td>
             <td>{{music.track}} of {{music.notracks}}</td>
             <td>{{music.disc}} of {{music.nodiscs}}</td>
             <td>{{music.duration}}</td>
