@@ -9,7 +9,7 @@ var port = (process.env.PORT || 10000);
 
 var app = express();
 
-/*governify.control(app, {namespace: 'pcp'}, 	customMetrics: [
+/*governify.control(app, {namespace: 'sgc'}, 	customMetrics: [
 		{
 			path: "/movies",
 			method: "POST",
@@ -17,14 +17,35 @@ var app = express();
 			metric: 'Resources',
 			calculate: function(req, res, callback){
 				//asynchronousCalculation
-				callback( 4 );
-				//synchronous
-				return contacts.length();
+				dbMovies.find({}, function(movies){
+					dbBooks.find({}, function(books){
+						dbMusics.find({}, function(musics){
+							callback( movies.lenght + books.lenght + musics.lenght );
+						});
+					});
+				});
+								
 			}
 		}
-	]);
-*/
+	]);*/
+/*governify.control(app, {namespace: 'sgc', apiKeyVariable: 'multiPlan_C2_sgc_ag', [
+		{
+			path: "/movies",
+			//method: "POST",
+			term: 'MoviesTerm',
+			metric: 'Movies',
+			calculate: function(req, res, callback){
+				console.log("Entra en calculate");
+				//asynchronousCalculation
+				dbMovies.find({}, function(err,movies){
+					console.log("Entra en find");
+					return movies.lenght;
+				});							
+			}
+		}
+	]});*/
 
+//governify.control(app, {namespace: "sgc", defaultPath: ["/movies", "/books", "/musics"]});
 
 var dbMoviesFileName = path.join(__dirname,'movies.json');
 var dbMovies = new DataStore({

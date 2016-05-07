@@ -11,6 +11,12 @@
 </head>
 <body>
   <div class="container-fluid">
+    <div class="row" ng-controller="URLCtrl">
+      <h2>Enter API Key</h2>
+      <input class="form-control" ng-model="loc"/><button class="btn btn-primary" ng-click="changeURL()">Done</button>
+    </div>
+  </div>
+  <div class="container-fluid">
     <div class="row" ng-controller="MovieCtrl">
       <h2> <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Movie List</h2>
       <table class="table table-striped">

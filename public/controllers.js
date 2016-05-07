@@ -1,11 +1,43 @@
 var myApp = angular.module("StoreListApp",[]);
 
+//Factory
+myApp.factory('Data', function (){
+	var data = {
+        loc: ''
+    };
+
+    return {
+        getLoc: function () {
+            return data.loc;
+        },
+        setLoc: function (loc) {
+            data.loc = loc;
+        }
+    };
+});
+
+//API Key Controller
+myApp.controller('URLCtrl',['$scope','Data','$rootScope', function($scope, Data,$rootScope){
+	$scope.changeURL = function(){
+		Data.setLoc($scope.loc);
+		$rootScope.$broadcast('ChangeData');
+	}
+	
+}]);
+
 // Movies controller
-myApp.controller('MovieCtrl',['$scope','$http',function($scope,$http){
+myApp.controller('MovieCtrl',['$scope','$http','Data',function($scope,$http, Data){
 	console.log("Movie Controller initialized");
 
+	var apikey= "";
+	
+	$scope.$on('ChangeData', function (event) {
+		apikey = "?apikey=" + Data.getLoc();
+		refresh();
+    });
+
 	var refresh = function (){
-		$http.get('/movies').success(function (movies){
+		$http.get('/movies'+apikey).success(function (movies){
 			console.log('Movies data received successfully');
 			$scope.movieList = movies;
 		});
@@ -24,15 +56,21 @@ myApp.controller('MovieCtrl',['$scope','$http',function($scope,$http){
 		$http.delete('/movies/' + title);
 		refresh();
 	}
-
 }]);
 
 // Books controller
-myApp.controller('BookCtrl',['$scope','$http',function($scope,$http){
+myApp.controller('BookCtrl',['$scope','$http','Data',function($scope,$http,Data){
 	console.log("Book Controller initialized");
 
+	var apikey= "";
+	
+	$scope.$on('ChangeData', function (event) {
+		apikey = "?apikey=" + Data.getLoc();
+		refresh();
+    });
+
 	var refresh = function (){
-		$http.get('/books').success(function (books){
+		$http.get('/books'+apikey).success(function (books){
 			console.log('Books data received successfully');
 			$scope.bookList = books;
 		});
@@ -44,6 +82,7 @@ myApp.controller('BookCtrl',['$scope','$http',function($scope,$http){
 		console.log("Inserting book ...");
 		$http.post('/books', $scope.book);
 		refresh();
+		console.log($scope.loc);
 	}
 
 	$scope.deleteBook = function(title){
@@ -55,11 +94,18 @@ myApp.controller('BookCtrl',['$scope','$http',function($scope,$http){
 }]);
 
 // Music controller
-myApp.controller('MusicCtrl',['$scope','$http',function($scope,$http){
+myApp.controller('MusicCtrl',['$scope','$http','Data',function($scope,$http,Data){
 	console.log("Music Controller initialized");
 
+	var apikey= "";
+	
+	$scope.$on('ChangeData', function (event) {
+		apikey = "?apikey=" + Data.getLoc();
+		refresh();
+    });
+
 	var refresh = function (){
-		$http.get('/musics').success(function (musics){
+		$http.get('/musics'+apikey).success(function (musics){
 			console.log('Musics data received successfully');
 			$scope.musicList = musics;
 		});
