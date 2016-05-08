@@ -3,7 +3,8 @@ var myApp = angular.module("StoreListApp",[]);
 //Factory
 myApp.factory('Data', function (){
 	var data = {
-        loc: ''
+        loc: '',
+        lists: false
     };
 
     return {
@@ -12,6 +13,12 @@ myApp.factory('Data', function (){
         },
         setLoc: function (loc) {
             data.loc = loc;
+        },
+        getLists: function (){
+        	return data.lists;
+        },
+        setLists: function(lists){
+        	data.lists = lists;
         }
     };
 });
@@ -20,6 +27,7 @@ myApp.factory('Data', function (){
 myApp.controller('URLCtrl',['$scope','Data','$rootScope', function($scope, Data,$rootScope){
 	$scope.changeURL = function(){
 		Data.setLoc($scope.loc);
+		Data.setLists(true);
 		$rootScope.$broadcast('ChangeData');
 	}
 	
@@ -30,8 +38,10 @@ myApp.controller('MovieCtrl',['$scope','$http','Data',function($scope,$http, Dat
 	console.log("Movie Controller initialized");
 
 	var apikey= "";
+	$scope.lists = false;
 	
 	$scope.$on('ChangeData', function (event) {
+		$scope.lists = Data.getLists();
 		apikey = "?apikey=" + Data.getLoc();
 		refresh();
     });
@@ -47,13 +57,13 @@ myApp.controller('MovieCtrl',['$scope','$http','Data',function($scope,$http, Dat
 
 	$scope.addMovie = function(){
 		console.log("Inserting movie ...");
-		$http.post('/movies/'+apikey, $scope.movie);
+		$http.post('/movies'+apikey, $scope.movie);
 		refresh();
 	}
 
 	$scope.deleteMovie = function(title){
 		console.log("Deleting movie with " + title);
-		$http.delete('/movies/' + title + '/' + apikey);
+		$http.delete('/movies/' + title + apikey);
 		refresh();
 	}
 }]);
@@ -63,8 +73,10 @@ myApp.controller('BookCtrl',['$scope','$http','Data',function($scope,$http,Data)
 	console.log("Book Controller initialized");
 
 	var apikey= "";
+	$scope.lists = false;
 	
 	$scope.$on('ChangeData', function (event) {
+		$scope.lists = Data.getLists();
 		apikey = "?apikey=" + Data.getLoc();
 		refresh();
     });
@@ -97,8 +109,10 @@ myApp.controller('MusicCtrl',['$scope','$http','Data',function($scope,$http,Data
 	console.log("Music Controller initialized");
 
 	var apikey= "";
+	$scope.lists = false;
 	
 	$scope.$on('ChangeData', function (event) {
+		$scope.lists = Data.getLists();
 		apikey = "?apikey=" + Data.getLoc();
 		refresh();
     });

@@ -3,61 +3,26 @@ var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var DataStore = require('nedb');
-//var governify = require('governify')
+//var governify = require('governify');
 
 var port = (process.env.PORT || 10000);
 
 var app = express();
 
-/*governify.control(app, {namespace: 'sgc'}, 	customMetrics: [
-		{
-			path: "/movies",
-			method: "POST",
-			term: 'ResourcesTerm',
-			metric: 'Resources',
-			calculate: function(req, res, callback){
-				//asynchronousCalculation
-				dbMovies.find({}, function(movies){
-					dbBooks.find({}, function(books){
-						dbMusics.find({}, function(musics){
-							callback( movies.lenght + books.lenght + musics.lenght );
-						});
-					});
-				});
-								
-			}
-		}
-	]);*/
-/*governify.control(app, {namespace: 'sgc', apiKeyVariable: 'multiPlan_C2_sgc_ag', [
-		{
-			path: "/movies",
-			//method: "POST",
-			term: 'MoviesTerm',
-			metric: 'Movies',
-			calculate: function(req, res, callback){
-				console.log("Entra en calculate");
-				//asynchronousCalculation
-				dbMovies.find({}, function(err,movies){
-					console.log("Entra en find");
-					return movies.lenght;
-				});							
-			}
-		}
-	]});*/
-//governify.control(app, {namespace: "sgc", defaultPath: ["/movies", "/books", "/musics"]});
+//Governify simple. El portal es: http://portal.governify.io/app/#/portal?configurl=http:%2F%2Flabs.isa.us.es%2Fir%2Fsagoca%2Fawsmicroservices%2FPlans%2Fportal-config.json
+//governify.control(app, {namespace: "sgc"});
 
-/*governify.control(app, {namespace: "sgc", defaultPath: ["/movies", "/books", "/musics"], customMetrics: [
+//Governify con nueva métrica de Movies
+/*governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"], customMetrics: [
 	{
 		path: "/movies",
 			method: "POST",
 			term: 'MoviesTerm',
 			metric: 'Movies',
-			calculate: function(req, res, callback){
-				console.log("Entra en calculate");
+			calculate: function(actualValue, req, res, callback){
 				//asynchronousCalculation
 				dbMovies.find({}, function(err,movies){
-					console.log("Entra en find");
-					callback(movies.lenght);
+					callback(movies.length);
 				});							
 			}
 	}]});*/
