@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var DataStore = require('nedb');
-//var governify = require('governify');
+var governify = require('governify');
 
 var port = (process.env.PORT || 10000);
 
@@ -13,7 +13,7 @@ var app = express();
 //governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"]});
 
 //Governify con nueva métrica de Movies
-/*governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"], customMetrics: [
+governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"], customMetrics: [
 	{
 		path: "/movies",
 			method: "POST",
@@ -25,7 +25,7 @@ var app = express();
 					callback(movies.length);
 				});							
 			}
-	}]});*/
+	}]});
 
 var dbMoviesFileName = path.join(__dirname,'movies.json');
 var dbMovies = new DataStore({
