@@ -44,8 +44,23 @@ var app = express();
 			}
 		}
 	]});*/
-
 //governify.control(app, {namespace: "sgc", defaultPath: ["/movies", "/books", "/musics"]});
+
+/*governify.control(app, {namespace: "sgc", defaultPath: ["/movies", "/books", "/musics"], customMetrics: [
+	{
+		path: "/movies",
+			method: "POST",
+			term: 'MoviesTerm',
+			metric: 'Movies',
+			calculate: function(req, res, callback){
+				console.log("Entra en calculate");
+				//asynchronousCalculation
+				dbMovies.find({}, function(err,movies){
+					console.log("Entra en find");
+					callback(movies.lenght);
+				});							
+			}
+	}]});*/
 
 var dbMoviesFileName = path.join(__dirname,'movies.json');
 var dbMovies = new DataStore({

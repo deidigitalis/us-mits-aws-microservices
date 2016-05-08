@@ -47,13 +47,13 @@ myApp.controller('MovieCtrl',['$scope','$http','Data',function($scope,$http, Dat
 
 	$scope.addMovie = function(){
 		console.log("Inserting movie ...");
-		$http.post('/movies', $scope.movie);
+		$http.post('/movies/'+apikey, $scope.movie);
 		refresh();
 	}
 
 	$scope.deleteMovie = function(title){
 		console.log("Deleting movie with " + title);
-		$http.delete('/movies/' + title);
+		$http.delete('/movies/' + title + '/' + apikey);
 		refresh();
 	}
 }]);
@@ -80,14 +80,13 @@ myApp.controller('BookCtrl',['$scope','$http','Data',function($scope,$http,Data)
 
 	$scope.addBook = function(){
 		console.log("Inserting book ...");
-		$http.post('/books', $scope.book);
+		$http.post('/books/'+apikey, $scope.book);
 		refresh();
-		console.log($scope.loc);
 	}
 
 	$scope.deleteBook = function(title){
 		console.log("Deleting book with " + title);
-		$http.delete('/books/' + title);
+		$http.delete('/books/' + title + '/' + apikey);
 		refresh();
 	}
 
@@ -115,13 +114,13 @@ myApp.controller('MusicCtrl',['$scope','$http','Data',function($scope,$http,Data
 
 	$scope.addMusic = function(){
 		console.log("Inserting music ...");
-		$http.post('/musics', $scope.music);
+		$http.post('/musics/'+apikey, $scope.music);
 		refresh();
 	}
 
 	$scope.deleteMusic = function(title){
 		console.log("Deleting music with " + title);
-		$http.delete('/musics/' + title);
+		$http.delete('/musics/' + title + '/' + apikey);
 		refresh();
 	}
 
