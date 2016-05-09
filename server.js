@@ -9,14 +9,16 @@ var port = (process.env.PORT || 10000);
 
 var app = express();
 
-//Governify simple. El portal es: http://portal.governify.io/app/#/portal?configurl=http:%2F%2Flabs.isa.us.es%2Fir%2Fsagoca%2Fawsmicroservices%2FPlans%2Fportal-config.json
-//governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"]});
+//Governify simple. 
+//El portal es: http://portal.governify.io/app/#/portal?configurl=http:%2F%2Flabs.isa.us.es%2Fir%2Fsagoca%2Fawsmicroservices%2FPlans%2Fportal-config.json
+//La API Key es multiPlan_C2_gr5_ag
+//governify.control(app, {namespace: "gr5", defaultPath: ["/movies","/books", "/musics"]});
 
 //Governify con nueva métrica de Movies
-governify.control(app, {namespace: "sgc", defaultPath: ["/movies","/books", "/musics"], customMetrics: [
+governify.control(app, {namespace: "gr5", defaultPath: ["/movies","/books", "/musics"], customMetrics: [
 	{
 		path: "/movies",
-			method: "POST",
+			method: "GET",
 			term: 'MoviesTerm',
 			metric: 'Movies',
 			calculate: function(actualValue, req, res, callback){
