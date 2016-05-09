@@ -126,7 +126,7 @@ dbBooks.find({},function (err,books){
 			year: 2012,
 			cover: "http://leelibros.com/biblioteca/files/images/2099_0.jpg",
 			summary: "La Colección Narrativas, de Ediciones Irreverentes (editorial fundada en 1999), llega a su número 100. Y lo hace con una compilación de relatos futuristas titulada 2099. Antología de Ciencia Ficción, coordinada por Félix Díaz y Miguel Ángel de Rus.",
-			author: "Philip K. Dick, Arthur C. Clarke, Julio Verne, Carlos Sáiz Cidoncha, Ray Bradbury, Francisco Javier Illán Vivas, Edward Page Mitchell, Eduardo Vaquerizo, Ana María Shua, Francisco Javier Masegosa Ávila, Javier Fernández Jiménez, Miguel Ángel de Rus, Pedro Amorós, Andrés Fornells, Manuel Villa-Mabela, Kalton Harold Bruhl, Joaquín Lloréns, Nelson Verástegui, Francisco Legaz, Elena Marqués, Erick Mota, Mar Cueto Aller, Pablo Vázquez, Jesús Yébenes Montemayor, Francisco José Segovia Ramos, Santiago Bergantinhos, Félix Díaz González, Susana Corcuera, Salvador Robles Miras, Juanje López, Javier Martos, Pedro Pujante, Marisa Alemany, Eduardo Higueras Ledesma, Jorge Majfud, Julio Rueda Suarez, Aleksandr Beliáev, Alberto Chimal, Joan Llensa, José Ramón Fernández, José G. Cordonié, Víctor Bórquerz, Pedro López Manzano, José Luis Ordoñez, Juan Vivancos Antón, Kir Bullychiov",
+			author: "Philip K. Dick, Arthur C. Clarke, Julio Verne, Carlos Sáiz Cidoncha,...",
 			genre : "Science fiction, Narrative",
 			isbn : "0-394-58816-9"
 		});
